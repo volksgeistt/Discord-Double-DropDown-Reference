@@ -1,3 +1,25 @@
+import os
+os.system("pip install -U nextcord")
+import nextcord
+from nextcord.ext import commands
+from colorama import Fore
+
+intents = nextcord.Intents.all()
+intents.message_content = True
+intents.members = True
+intents.presences = True
+
+prefxvent = ["???"]
+tknxvent = ""
+
+client = commands.Bot(command_prefix=prefxvent,intents=intents)
+client.remove_command("help")
+client.owner_ids = []
+
+@client.event
+async def on_ready():
+  print("Online - Vent#1337")
+
 # Class 1
 class Vent1(nextcord.ui.Select):
   def __init__(self, embed=None):
@@ -45,3 +67,5 @@ async def help(ctx):
   embed.set_footer(text=f"Requested By {ctx.author}",
                    icon_url=ctx.author.avatar.url)
   await ctx.send(embed=embed, view=view)
+
+ client.run(tknxvent)
